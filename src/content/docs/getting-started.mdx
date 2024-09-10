@@ -1,0 +1,61 @@
+---
+title: Getting Started
+description: Getting started with otterhttp
+---
+
+# Getting Started
+
+## Introduction
+
+_**tinyhttp**_ is a modern Express-like web framework for Node.js written in TypeScript. It uses a bare minimum amount of dependencies in order to stay minimal and reduce the supply chain. Additionally, tinyhttp also offers native ESM (`import` / `export`) support, async middleware handlers support, and proper types out of the box.
+
+## Differences with Express
+
+Although tinyhttp tries to be as close to Express as possible, there are some key differences between these two frameworks:
+
+- **tinyhttp doesn't have the same settings**. All `App` settings are initialized in the constructor. You can see a list of them [here](/content/docs/api/application#settings).
+- **tinyhttp doesn't put the `err` object in middleware if the previous one passed an error**. Instead, it uses a [generic error handler](/content/docs/api/application#onerror-err-req-res).
+- **tinyhttp doesn't include a static server and a body parser**. To keep the framework small, you should use external middlewares, such as [`milliparsec`](https://github.com/tinyhttp/milliparsec) and [`sirv`](https://github.com/lukeed/sirv).
+
+Note that maximum compatibility is in progress so some of the points might change.
+
+## Install
+
+otterhttp supports Node.js v20 or newer.
+
+<CodeGroup groupKey="packageManager">
+  <CodeGroupOption optionKey="pnpm">
+    ```bash
+    pnpm add @otterhttp/app
+    ```
+  </CodeGroupOption>
+  <CodeGroupOption optionKey="npm">
+    ```bash
+    npm i @otterhttp/app
+    ```
+  </CodeGroupOption>
+  <CodeGroupOption optionKey="yarn">
+    ```bash
+    yarn add @otterhttp/app
+    ```
+  </CodeGroupOption>
+  <CodeGroupOption optionKey="bun">
+    ```bash
+    bun i @otterhttp/app
+    ```
+  </CodeGroupOption>
+</CodeGroup>
+
+## Hello World
+
+Here is a very basic example of an otterhttp app:
+
+```js
+import { App } from '@otterhttp/app'
+
+const app = new App()
+
+app.use((req, res) => void res.send('Hello world!'))
+
+app.listen(3000, () => console.log('Started on http://localhost:3000'))
+```

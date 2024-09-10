@@ -1,0 +1,33 @@
+.code-group {
+  .tabs {
+    @apply flex flex-row border-b px-3;
+    
+    label {
+      @apply relative px-3 leading-10 text-muted-foreground font-medium;
+    }
+    
+    label::after {
+      position: absolute;
+      right: 8px;
+      bottom: -1px;
+      left: 8px;
+      z-index: 1;
+      height: 2px;
+      border-radius: 2px;
+      content: "";
+      transition: background-color .25s;
+    }
+    
+    input:checked + label {
+      @apply text-foreground;
+    }
+    
+    input:checked + label::after {
+      @apply bg-brand;
+    }
+  }
+  
+  code {
+    @apply text-[length:inherit];
+  }
+}

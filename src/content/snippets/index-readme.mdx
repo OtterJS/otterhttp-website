@@ -1,0 +1,24 @@
+```ts
+import { App } from '@otterhttp/app'
+import { logger } from '@otterhttp/logger'
+
+const app = new App()
+
+app
+  .use(logger())
+  .get('/', (_, res) => void res.send('<h1>Hello World</h1>'))
+  .get('/page/:page/', (req, res) => {
+    res.status(200).send(req.params)
+  })
+  .listen(3000)
+```
+
+## Features
+
+- **ESM-only**. Embraces the standard modules.
+- **No polyfills**. [80% smaller](https://arve0.github.io/npm-download-size/#@otterhttp%2fapp) install size than express.
+- **Strongly typed**. Works well with TypeScript.
+
+## Used by
+
+- [ducompsoc/durhack](https://durhack.com)
